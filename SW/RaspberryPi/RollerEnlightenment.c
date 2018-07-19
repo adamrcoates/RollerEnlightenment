@@ -153,8 +153,7 @@ int get_cadence(){
 
 
 int get_sensor(){
-  int sensor = get_sensor();
-  return sensor;
+  return 0;
 }
 
 
