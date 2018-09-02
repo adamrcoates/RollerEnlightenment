@@ -130,10 +130,10 @@ void send_msg(int fd, unsigned char bd[],unsigned char bd_size){
   unsigned char pay_size = bd_size-1;
   unsigned char check_val = checksum_calc(pay_size,bd);
   
-  printf("%02x",0xA4); //send the sync
-  printf("%02x",pay_size); //send the payload size
-  printf("%02x%02x",bd,bd_size);//send payload
-  printf("%02x\n",check_val); //send checksum
+//  printf("%02x",0xA4); //send the sync
+//  printf("%02x",pay_size); //send the payload size
+//  printf("%02x%02x",bd,bd_size);//send payload
+//  printf("%02x\n",check_val); //send checksum
 
 
   buf[0] = 0xA4;
@@ -141,8 +141,14 @@ void send_msg(int fd, unsigned char bd[],unsigned char bd_size){
   for (a=0;a<bd_size;a++){
     buf[a+2] = bd[a];
   }
-  buf[a+bd_size] = check_val;
+  buf[2+bd_size] = check_val;
   buf_size = bd_size + 3;
+
+  for (a=0; a<buf_size; a++){
+    printf("%02x",buf[a]);
+  }
+  printf("\t%02x\n",check_val);
+
 
   wlen = write(fd, buf, buf_size);
   if (wlen != buf_size) {
