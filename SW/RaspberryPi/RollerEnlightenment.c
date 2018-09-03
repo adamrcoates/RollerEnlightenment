@@ -147,7 +147,7 @@ void send_msg(int fd, unsigned char bd[],unsigned char bd_size){
   for (a=0; a<buf_size; a++){
     printf("%02x",buf[a]);
   }
-  printf("\t%02x\n",check_val);
+  printf("\n");
 
 
   wlen = write(fd, buf, buf_size);
@@ -175,7 +175,7 @@ unsigned char checksum_calc(unsigned char pay_size, unsigned char bd[]){
 
 int get_power(){
   int sensor = get_sensor();
-  return sensor;
+  return 5;
 }
 
 int get_speed(){
